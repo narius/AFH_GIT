@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+
+            <div class="card">
+                <div class="card-header card-header-danger">
+                    New answer
+                </div>
+                <div class="card-body">
+                    <form method="post" action="{% url 'new_answer' %}">{% csrf_token %}
+                        <div class="form-group">
+                            <label for="question">Question</label>
+                            <select id="question" name="question_pk" class="form-control">
+                                {% for question in questions %}
+                                    <option value="{{ question.pk }}">{{ question.text }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Answer</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1"
+                                   name="answer_text">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

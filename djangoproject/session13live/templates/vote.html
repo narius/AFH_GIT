@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            {% for question in questions %}
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        {{ question.text }}
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            {% for answer in question.answers.all %}
+                                <li>{{ answer.text }} {{ answer.number_of_votes }} <a href="{% url 'vote' answer.pk %}">vote</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
